@@ -1,0 +1,61 @@
+---
+import User from "../interfaces/user.interface";
+
+const { id, username, name, email, address } = Astro.props as User;
+
+const url = import.meta.env.PUBLIC_APIURL;
+console.log(url);
+
+function test() {
+  console.log("Hola");
+}
+
+// const goToUser = (id: number) => {
+//   Astro.redirect("/" + id);
+// };
+---
+
+<a
+  href=`/users/${id}`
+  class="min-w-[32%]
+  border
+  border-gray-300
+  rounded-sm
+  p-3
+  duration-200
+  cursor-pointer
+  hover:bg-gray-200"
+>
+  <h1>{username}</h1>
+  <h2>{name}</h2>
+  <strong>{email}</strong>
+  <fieldset class="border border-gray-300 rounded-sm p-2 w-full">
+    <legend>Address</legend>
+    <table class="table-auto">
+      <tbody class="text-left">
+        <tr>
+          <th>Street</th>
+          <td class="pl-5">{address.street}</td>
+        </tr>
+        <tr>
+          <th>Suite</th>
+          <td class="pl-5">{address.suite}</td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <td class="pl-5">{address.city}</td>
+        </tr>
+        <tr>
+          <th>Zipcode</th>
+          <td class="pl-5">{address.zipcode}</td>
+        </tr>
+        <tr>
+          <th>Geo</th>
+          <td class="pl-5">
+            Lat: {address.geo.lat}, Lng: {address.geo.lng}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</a>

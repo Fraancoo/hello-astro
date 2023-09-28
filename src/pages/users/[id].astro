@@ -1,0 +1,22 @@
+---
+import User from "../../interfaces/user.interface";
+
+import Layout from "../../layouts/Layout.astro";
+import { getUserByID } from "../../services/users";
+
+const { id } = Astro.params;
+
+var user = {} as User;
+
+if (id) {
+  user = await getUserByID(id);
+} else {
+  Astro.redirect("/");
+}
+---
+
+<Layout title={`User - ${user.id}`}>
+  <div></div>
+</Layout>
+
+<style></style>
